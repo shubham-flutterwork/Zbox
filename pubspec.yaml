@@ -1,0 +1,58 @@
+name: zbox_admin
+description: "A new Flutter project."
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.18.1
+  cupertino_icons: ^1.0.8
+  fl_chart: ^0.66.2
+  dropdown_button2: ^2.3.9
+  flutter_3d_controller: ^2.1.0
+  model_viewer_plus: ^1.8.0
+  carousel_slider: ^5.0.0
+  flutter_launcher_icons: ^0.14.3
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/zbox_logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/zbox_logo.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/zbox_logo.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/zbox_logo.png"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/models/
+    - assets/models/car.glb
+    - assets/models/car.obj
+    - assets/models/laptop.glb
+    - assets/models/laptop2.glb
+    - assets/models/car.glb
+
