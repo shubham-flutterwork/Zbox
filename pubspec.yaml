@@ -19,6 +19,7 @@ dependencies:
   model_viewer_plus: ^1.8.0
   carousel_slider: ^5.0.0
   flutter_launcher_icons: ^0.14.3
+  table_calendar: ^3.0.9
 
 
 flutter_launcher_icons:

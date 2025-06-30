@@ -3,22 +3,38 @@ import 'package:zbox_admin/auth_screen/loginscreen.dart';
 import 'constants/color.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+final ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Zbox Admin',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.blue),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (context, mode, _) {
+        return MaterialApp(
+          title: 'Zbox Admin',
+          themeMode: mode,
+
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.blue),
+            useMaterial3: true,
+          ),
+          darkTheme: ThemeData.dark().copyWith(
+            colorScheme: ColorScheme.dark(
+              primary: AppColors.blue,
+              secondary: AppColors.red,
+              surface: Colors.grey[900]!,
+              onSurface: Colors.white,
+            ),
+            useMaterial3: true,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: LoginScreen( themeNotifier: themeNotifier,),
+        );
+      },
     );
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:zbox_admin/auth_screen/forget_password_screen.dart';
+import '../main.dart';
 import '../menuscreen.dart';
 import '../constants/color.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({super.key, required this.themeNotifier});
+  final ValueNotifier<ThemeMode> themeNotifier;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -100,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MyMenuPage(title: 'ZBox Admin'),
+                        builder: (context) => MyMenuPage(title: 'ZBox Admin',   themeNotifier: themeNotifier,),
                       ),
                     );
                   },

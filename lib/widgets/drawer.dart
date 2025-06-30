@@ -5,6 +5,7 @@ import 'package:zbox_admin/pages/product_mng_screen.dart';
 import 'package:zbox_admin/pages/role_mng_screen.dart';
 import 'package:zbox_admin/pages/user_mng_screen.dart';
 import '../constants/color.dart';
+import '../main.dart';
 
 class AdminDrawer extends StatelessWidget {
   const AdminDrawer({super.key});
@@ -145,7 +146,7 @@ class AdminDrawer extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const LoginScreen()),
+                      MaterialPageRoute(builder: (context) => LoginScreen(themeNotifier:themeNotifier,)),
                     );
                   },
                 ),
