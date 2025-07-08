@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Zbox Admin',
           themeMode: mode,
-
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: AppColors.blue),
             useMaterial3: true,

@@ -28,14 +28,21 @@ class _MyMenuPageState extends State<MyMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.blue,
-        iconTheme: const IconThemeData(color: AppColors.white),
-        title: Text(widget.title, style: const TextStyle(color: AppColors.white)),
+        backgroundColor:widget.themeNotifier.value == ThemeMode.dark  ? Colors.grey[900] : AppColors.blue,
+        iconTheme: IconThemeData(
+          color: widget.themeNotifier.value == ThemeMode.dark ? AppColors.red: Colors.white,
+        ),
+        titleSpacing: 0,
+        title: Text(widget.title,
+            style: TextStyle(
+              color: widget.themeNotifier.value == ThemeMode.dark  ? AppColors.red: Colors.white,
+              fontWeight: FontWeight.bold,
+        )),
         actions: [
           IconButton(
             icon: Icon(
               widget.themeNotifier.value == ThemeMode.dark ? Icons.dark_mode : Icons.light_mode,
-              color: Colors.white,
+                color: widget.themeNotifier.value == ThemeMode.dark  ? AppColors.red: Colors.white,
             ),
             onPressed: () {
               widget.themeNotifier.value =
@@ -43,7 +50,8 @@ class _MyMenuPageState extends State<MyMenuPage> {
             },
           ),
           PopupMenuButton<String>(
-            icon: const Icon(Icons.tune, color: Colors.white),
+            icon: Icon(Icons.tune,color: widget.themeNotifier.value == ThemeMode.dark  ? AppColors.red: Colors.white,
+            ),
             onSelected: (value) {
               setState(() {
                 switch (value) {
@@ -74,6 +82,8 @@ class _MyMenuPageState extends State<MyMenuPage> {
               CheckedPopupMenuItem(value: 'Quick', checked: showQuickAccess, child: const Text('Quick Access')),
             ],
           ),
+          IconButton(onPressed: (){}, icon: Icon(Icons.logout_rounded,color: widget.themeNotifier.value == ThemeMode.dark  ? AppColors.red:Colors.white,
+          ))
         ],
       ),
       drawer: const AdminDrawer(),

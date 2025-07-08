@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:zbox_admin/pages/contentEditorScreen.dart';
+import 'package:zbox_admin/pages/notification_mng_screen.dart';
 import 'constants/color.dart';
 import 'package:zbox_admin/pages/order_mng_screen.dart';
 import 'package:zbox_admin/pages/product_mng_screen.dart';
@@ -41,6 +43,21 @@ class _AdminHomePageState extends State<AdminHomePage> {
         if (widget.showBarLineChart) ...[
           Text('Dashboard Overview',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.red)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildStatBox("Users", "1,200", Icons.person, Colors.blue),
+              _buildStatBox("Orders", "980", Icons.shopping_cart, Colors.green),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildStatBox("Revenue", "₹2.5L", Icons.attach_money, Colors.purple),
+              _buildStatBox("Low Stock", "12", Icons.warning, Colors.orange),
+            ],
+          ),
           const SizedBox(height: 16),
           _buildChartContainer(height: 300, child: _buildBarAndLineChart()),
           const SizedBox(height: 24),
@@ -243,7 +260,38 @@ class _AdminHomePageState extends State<AdminHomePage> {
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const VendorManagementScreen()))),
         _AdminCard(title: 'Reports & Logs', icon: Icons.bar_chart, color: AppColors.red,
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AdminReportsLogsScreen()))),
+        _AdminCard(title: 'Content & Policy Management', icon: Icons.privacy_tip_outlined, color: AppColors.red,
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => ContentManagementScreen()))),
+        _AdminCard(title: 'Notification Management', icon: Icons.notification_add_outlined, color: AppColors.blue,
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationManagementScreen()))),
       ],
+    );
+  }
+
+  Widget _buildStatBox(String label, String value, IconData icon, Color iconColor) {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 6),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isDarkMode ? Colors.grey[900] : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 6,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Icon(icon, color: iconColor, size: 28),
+          const SizedBox(height: 12),
+          Text(value, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 4),
+          Text(label, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
+        ]),
+      ),
     );
   }
 }
